@@ -1,0 +1,5 @@
+{
+    "tabWidth": 4,
+    "excludeFiles": ["*.json"],
+    "plugins": ["prettier-plugin-tailwindcss"]
+}
