@@ -20,13 +20,15 @@ declare global {
             id: string;
             info: {
                 // Example properties, for useSelf, useUser, useOthers, etc.
-                // name: string;
-                // avatar: string;
+                name: string;
+                avatar: string;
             };
         };
 
         // Custom events, for useBroadcastEvent, useEventListener
-        RoomEvent: {};
+        RoomEvent: {
+            reaction?: { x: number; y: number; value: string };
+        };
         // Example has two events, using a union
         // | { type: "PLAY" }
         // | { type: "REACTION"; emoji: "🔥" };

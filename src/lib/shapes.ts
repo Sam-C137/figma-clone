@@ -64,7 +64,7 @@ export const createText = (pointer: PointerEvent, text: string) => {
 };
 
 export const createSpecificShape = (
-    shapeType: string,
+    shapeType: string | null,
     pointer: PointerEvent,
 ) => {
     switch (shapeType) {

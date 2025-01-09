@@ -50,7 +50,10 @@ export function CursorChat({
             {cursorState.mode === CursorMode.Chat && (
                 <>
                     <CursorSVG color="#000" />
-                    <div className="absolute left-2 top-5 rounded-[20px] bg-blue-500 px-4 py-2 text-sm leading-relaxed text-background">
+                    <div
+                        className="absolute left-2 top-5 rounded-[20px] bg-blue-500 px-4 py-2 text-sm leading-relaxed text-background"
+                        onKeyUp={(e) => e.stopPropagation()}
+                    >
                         {cursorState.previousMessage && (
                             <div>{cursorState.previousMessage}</div>
                         )}

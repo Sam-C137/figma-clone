@@ -27,15 +27,10 @@ export type CursorState =
       };
 
 export type Reaction = {
+    id: string;
     value: string;
     timestamp: number;
     point: { x: number; y: number };
-};
-
-export type ReactionEvent = {
-    x: number;
-    y: number;
-    value: string;
 };
 
 export type ShapeData = {
@@ -101,13 +96,6 @@ export type RightSidebarProps = {
     syncShapeInStorage: (obj: unknown) => void;
 };
 
-export type NavbarProps = {
-    activeElement: ActiveElement;
-    imageInputRef: React.MutableRefObject<HTMLInputElement | null>;
-    handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleActiveElement: (element: ActiveElement) => void;
-};
-
 export type ShapesMenuProps = {
     item: {
         name: string;
@@ -123,9 +111,9 @@ export type ShapesMenuProps = {
 export type CanvasMouseDown = {
     options: fabric.IEvent;
     canvas: fabric.Canvas;
-    selectedShapeRef: React.RefObject<string>;
-    isDrawing: React.MutableRefObject<boolean>;
-    shapeRef: React.MutableRefObject<fabric.Object | null>;
+    selectedShapeRef: React.RefObject<string | null>;
+    isDrawing: React.RefObject<boolean>;
+    shapeRef: React.RefObject<fabric.Object | null>;
 };
 
 export type CanvasMouseMove = {
