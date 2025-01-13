@@ -96,18 +96,6 @@ export type RightSidebarProps = {
     syncShapeInStorage: (obj: unknown) => void;
 };
 
-export type ShapesMenuProps = {
-    item: {
-        name: string;
-        icon: string;
-        value: Array<ActiveElement>;
-    };
-    activeElement: unknown;
-    handleActiveElement: unknown;
-    handleImageUpload: unknown;
-    imageInputRef: unknown;
-};
-
 export type CanvasMouseDown = {
     options: fabric.IEvent;
     canvas: fabric.Canvas;

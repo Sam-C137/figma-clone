@@ -1,5 +1,5 @@
 import { Avatar } from "./avatar";
-import { useOthers, useSelf } from "@liveblocks/react";
+import { useOthers, useSelf } from "@liveblocks/react/suspense";
 import { generateRandomName } from "@/lib/utils";
 import { useMemo } from "react";
 
