@@ -1,5 +1,6 @@
 import { Gradient, Pattern } from "fabric/fabric-impl";
 import { fabric } from "fabric";
+import { LiveMap } from "@liveblocks/core";
 
 export enum CursorMode {
     Hidden,
@@ -70,7 +71,7 @@ export type ModifyShape = {
     property: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: any;
-    activeObjectRef: React.MutableRefObject<fabric.Object | null>;
+    activeObjectRef: React.RefObject<fabric.Object | null>;
     syncShapeInStorage: (shape: fabric.Object) => void;
 };
 
@@ -81,9 +82,9 @@ export type ElementDirection = {
 };
 
 export type ImageUpload = {
-    file: File;
-    canvas: React.MutableRefObject<fabric.Canvas>;
-    shapeRef: React.MutableRefObject<fabric.Object | null>;
+    file: File | undefined;
+    canvas: React.RefObject<fabric.Canvas | null>;
+    shapeRef: React.RefObject<fabric.Object | null>;
     syncShapeInStorage: (shape: fabric.Object) => void;
 };
 
@@ -92,7 +93,7 @@ export type RightSidebarProps = {
     setElementAttributes: React.Dispatch<React.SetStateAction<Attributes>>;
     fabricRef: React.RefObject<fabric.Canvas | null>;
     activeObjectRef: React.RefObject<fabric.Object | null>;
-    isEditingRef: React.MutableRefObject<boolean>;
+    isEditingRef: React.RefObject<boolean>;
     syncShapeInStorage: (obj: unknown) => void;
 };
 
@@ -107,25 +108,26 @@ export type CanvasMouseDown = {
 export type CanvasMouseMove = {
     options: fabric.IEvent;
     canvas: fabric.Canvas;
-    isDrawing: React.MutableRefObject<boolean>;
-    selectedShapeRef: React.RefObject<string>;
+    isDrawing: React.RefObject<boolean>;
+    selectedShapeRef: React.RefObject<string | null>;
     shapeRef: React.RefObject<
-        fabric.Circle &
-            fabric.Rect &
-            fabric.Triangle &
-            fabric.Line & { objectId: string }
+        | (fabric.Circle &
+              fabric.Rect &
+              fabric.Triangle &
+              fabric.Line & { objectId: string })
+        | null
     >;
     syncShapeInStorage: (shape: fabric.Object) => void;
 };
 
 export type CanvasMouseUp = {
     canvas: fabric.Canvas;
-    isDrawing: React.MutableRefObject<boolean>;
+    isDrawing: React.RefObject<boolean>;
     shapeRef: React.RefObject<fabric.Object | null>;
-    activeObjectRef: React.MutableRefObject<fabric.Object | null>;
+    activeObjectRef: React.RefObject<fabric.Object | null>;
     selectedShapeRef: React.RefObject<string | null>;
     syncShapeInStorage: (shape: fabric.Object | null) => void;
-    setActiveElement: (arg: unknown) => void;
+    setActiveElement: (element: ActiveElement) => void;
 };
 
 export type CanvasObjectModified = {
@@ -140,7 +142,7 @@ export type CanvasPathCreated = {
 
 export type CanvasSelectionCreated = {
     options: fabric.IEvent;
-    isEditingRef: React.MutableRefObject<boolean>;
+    isEditingRef: React.RefObject<boolean>;
     setElementAttributes: React.Dispatch<React.SetStateAction<Attributes>>;
 };
 
@@ -150,7 +152,8 @@ export type CanvasObjectScaling = {
 };
 
 export type RenderCanvas = {
-    fabricRef: React.MutableRefObject<fabric.Canvas | null>;
-    canvasObjects: [string, fabric.Object][];
-    activeObjectRef: React.RefObject<CustomFabricObject<fabric.Object>>;
+    fabricRef: React.RefObject<fabric.Canvas | null>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    canvasObjects: ReadonlyMap<string, any> | null;
+    activeObjectRef: React.RefObject<CustomFabricObject<fabric.Object> | null>;
 };

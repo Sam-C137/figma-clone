@@ -1,5 +1,7 @@
 export const COLORS = ["#DC2626", "#D97706", "#059669", "#7C3AED", "#DB2777"];
 
+export const CANVAS_OBJECTS_KEY = "canvasObjects";
+
 export const shapeElements = [
     {
         icon: "/assets/rectangle.svg",
@@ -66,7 +68,7 @@ export const navElements = [
     },
 ];
 
-export const defaultNavElement = {
+export const DefaultNavElement = {
     icon: "/assets/select.svg",
     name: "Select",
     value: "select",

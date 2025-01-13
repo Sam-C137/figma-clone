@@ -94,6 +94,7 @@ export const handleImageUpload = ({
     shapeRef,
     syncShapeInStorage,
 }: ImageUpload) => {
+    if (!file) return;
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -101,7 +102,7 @@ export const handleImageUpload = ({
             img.scaleToWidth(200);
             img.scaleToHeight(200);
 
-            canvas.current.add(img);
+            canvas.current?.add(img);
 
             // @ts-expect-error foo
             img.objectId = crypto.randomUUID();
@@ -109,7 +110,7 @@ export const handleImageUpload = ({
             shapeRef.current = img;
 
             syncShapeInStorage(img);
-            canvas.current.requestRenderAll();
+            canvas.current?.requestRenderAll();
         });
     };
 

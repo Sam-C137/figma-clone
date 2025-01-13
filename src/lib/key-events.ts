@@ -83,44 +83,47 @@ export const handleKeyDown = ({
     deleteShapeFromStorage,
 }: {
     e: KeyboardEvent;
-    canvas: fabric.Canvas;
+    canvas: fabric.Canvas | null;
     undo: () => void;
     redo: () => void;
     syncShapeInStorage: (shape: fabric.Object) => void;
     deleteShapeFromStorage: (id: string) => void;
 }) => {
+    if (!canvas) return;
+
     // Check if the key pressed is ctrl/cmd + c (copy)
-    if ((e?.ctrlKey || e?.metaKey) && e.keyCode === 67) {
+    if ((e?.ctrlKey || e?.metaKey) && e.code === "KeyC") {
         handleCopy(canvas);
     }
 
     // Check if the key pressed is ctrl/cmd + v (paste)
-    if ((e?.ctrlKey || e?.metaKey) && e.keyCode === 86) {
+    if ((e?.ctrlKey || e?.metaKey) && e.code === "KeyV") {
         handlePaste(canvas, syncShapeInStorage);
     }
 
     // Check if the key pressed is delete/backspace (delete)
-    // if (e.keyCode === 8 || e.keyCode === 46) {
-    //   handleDelete(canvas, deleteShapeFromStorage);
-    // }
+    if (e.code === "Backspace" || e.code === "Delete") {
+        handleDelete(canvas, deleteShapeFromStorage);
+    }
 
     // check if the key pressed is ctrl/cmd + x (cut)
-    if ((e?.ctrlKey || e?.metaKey) && e.keyCode === 88) {
+    if ((e?.ctrlKey || e?.metaKey) && e.code === "KeyX") {
         handleCopy(canvas);
         handleDelete(canvas, deleteShapeFromStorage);
     }
 
     // check if the key pressed is ctrl/cmd + z (undo)
-    if ((e?.ctrlKey || e?.metaKey) && e.keyCode === 90) {
+    if ((e?.ctrlKey || e?.metaKey) && e.code === "KeyZ") {
         undo();
     }
 
     // check if the key pressed is ctrl/cmd + y (redo)
-    if ((e?.ctrlKey || e?.metaKey) && e.keyCode === 89) {
+    if ((e?.ctrlKey || e?.metaKey) && e.code === "KeyY") {
         redo();
     }
 
-    if (e.keyCode === 191 && !e.shiftKey) {
+    // Prevent forward slash key default behavior
+    if (e.code === "Slash" && !e.shiftKey) {
         e.preventDefault();
     }
 };

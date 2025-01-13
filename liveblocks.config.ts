@@ -1,5 +1,7 @@
 // Define Liveblocks types for your application
 // https://liveblocks.io/docs/api-reference/liveblocks-react#Typing-your-data
+import { LiveMap } from "@liveblocks/core";
+
 declare global {
     interface Liveblocks {
         // Each user's Presence, for useMyPresence, useOthers, etc.
@@ -13,6 +15,8 @@ declare global {
         Storage: {
             // Example, a conflict-free list
             // animals: LiveList<string>;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            canvasObjects: LiveMap<string, any>;
         };
 
         // Custom user info set when authenticating with a secret key

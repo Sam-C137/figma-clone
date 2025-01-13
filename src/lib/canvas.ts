@@ -9,7 +9,7 @@ import {
     CanvasSelectionCreated,
     RenderCanvas,
 } from "@/types/types";
-import { defaultNavElement } from "@/lib/constants";
+import { DefaultNavElement } from "@/lib/constants";
 import { createSpecificShape } from "./shapes";
 
 export const initializeFabric = ({
@@ -88,7 +88,7 @@ export const handleCanvasMouseDown = ({
     }
 };
 
-export const handleCanvaseMouseMove = ({
+export const handleCanvasMouseMove = ({
     options,
     canvas,
     isDrawing,
@@ -111,7 +111,7 @@ export const handleCanvaseMouseMove = ({
             break;
 
         case "circle":
-            shapeRef.current.set({
+            shapeRef.current?.set({
                 radius: Math.abs(pointer.x - (shapeRef.current?.left || 0)) / 2,
             });
             break;
@@ -172,7 +172,7 @@ export const handleCanvasMouseUp = ({
     // if canvas is not in drawing mode, set active element to default nav element after 700ms
     if (!canvas.isDrawingMode) {
         setTimeout(() => {
-            setActiveElement(defaultNavElement);
+            setActiveElement(DefaultNavElement);
         }, 700);
     }
 };
@@ -307,7 +307,7 @@ export const renderCanvas = ({
     fabricRef.current?.clear();
 
     // render all objects on canvas
-    Array.from(canvasObjects, ([objectId, objectData]) => {
+    Array.from(canvasObjects ?? [], ([objectId, objectData]) => {
         /**
          * enlivenObjects() is used to render objects on canvas.
          * It takes two arguments:
