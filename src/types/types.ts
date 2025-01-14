@@ -1,6 +1,5 @@
 import { Gradient, Pattern } from "fabric/fabric-impl";
 import { fabric } from "fabric";
-import { LiveMap } from "@liveblocks/core";
 
 export enum CursorMode {
     Hidden,

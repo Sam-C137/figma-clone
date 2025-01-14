@@ -6,7 +6,7 @@ import { useMaxZIndex } from "@/lib/useMaxZIndex";
 import { PinnedThread } from "./pinned-thread";
 import {
     useEditThreadMetadata,
-    useUser,
+    // useUser,
     useThreads,
 } from "@liveblocks/react/suspense";
 import { ClientSideSuspense } from "@liveblocks/react";
