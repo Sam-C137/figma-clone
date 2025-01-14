@@ -10,6 +10,7 @@ import {
     useThreads,
 } from "@liveblocks/react/suspense";
 import { ClientSideSuspense } from "@liveblocks/react";
+import React from "react";
 
 export const Comments = () => (
     <ClientSideSuspense fallback={null}>
@@ -22,7 +23,7 @@ interface OverlayThreadProps {
     maxZIndex: number;
 }
 
-export function CommentsOverlay() {
+export const CommentsOverlay = React.memo(() => {
     const { threads } = useThreads();
     const maxZIndex = useMaxZIndex();
 
@@ -39,11 +40,11 @@ export function CommentsOverlay() {
                 ))}
         </div>
     );
-}
+});
 
-const OverlayThread = ({ thread, maxZIndex }: OverlayThreadProps) => {
+function OverlayThread({ thread, maxZIndex }: OverlayThreadProps) {
     const editThreadMetadata = useEditThreadMetadata();
-    const { isLoading } = useUser(thread.comments[0].userId);
+    // const { isLoading } = useUser(thread.comments[0].userId);
     const threadRef = useRef<HTMLDivElement>(null);
 
     const handleIncreaseZIndex = useCallback(() => {
@@ -59,9 +60,9 @@ const OverlayThread = ({ thread, maxZIndex }: OverlayThreadProps) => {
         });
     }, [thread, editThreadMetadata, maxZIndex]);
 
-    if (isLoading) {
-        return null;
-    }
+    // if (isLoading) {
+    //     return null;
+    // }
 
     return (
         <div
@@ -75,4 +76,4 @@ const OverlayThread = ({ thread, maxZIndex }: OverlayThreadProps) => {
             <PinnedThread thread={thread} onFocus={handleIncreaseZIndex} />
         </div>
     );
-};
+}

@@ -8,6 +8,7 @@ export const useMaxZIndex = () => {
     };
 
     return useMemo(() => {
-        return Math.max(...[...threads.map((t) => t.metadata.zIndex)]);
+        const max = Math.max(...[...threads.map((t) => t.metadata.zIndex)]);
+        return max === -Infinity ? 0 : max;
     }, [threads]);
 };

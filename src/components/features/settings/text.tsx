@@ -99,7 +99,7 @@ function RenderSelect({
                       : fontWeight
             }
         >
-            <SelectTrigger className="no-ring w-full rounded-sm border border-primary-grey-200">
+            <SelectTrigger className="no-ring w-full rounded-sm border border-primary-grey-200 bg-transparent">
                 <SelectValue
                     placeholder={
                         config.property === "fontFamily"

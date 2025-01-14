@@ -43,7 +43,7 @@ export function Dimensions({
                             onChange={(e) =>
                                 handleInputChange(item.property, e.target.value)
                             }
-                            onBlur={(e) => {
+                            onBlur={() => {
                                 isEditingRef.current = false;
                             }}
                         />

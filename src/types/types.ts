@@ -88,15 +88,6 @@ export type ImageUpload = {
     syncShapeInStorage: (shape: fabric.Object) => void;
 };
 
-export type RightSidebarProps = {
-    elementAttributes: Attributes;
-    setElementAttributes: React.Dispatch<React.SetStateAction<Attributes>>;
-    fabricRef: React.RefObject<fabric.Canvas | null>;
-    activeObjectRef: React.RefObject<fabric.Object | null>;
-    isEditingRef: React.RefObject<boolean>;
-    syncShapeInStorage: (obj: unknown) => void;
-};
-
 export type CanvasMouseDown = {
     options: fabric.IEvent;
     canvas: fabric.Canvas;
